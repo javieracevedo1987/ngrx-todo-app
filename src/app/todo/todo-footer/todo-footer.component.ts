@@ -3,6 +3,7 @@ import { validFilters, SetFiltroAction } from "src/app/filter/filter.actions";
 import { AppState } from "src/app/app.reducers";
 import { Store } from "@ngrx/store";
 import { Todo } from "../model/todo.model";
+import { ClearCompletedTodoAction } from "../todo.actions";
 
 @Component({
   selector: "app-todo-footer",
@@ -30,5 +31,10 @@ export class TodoFooterComponent implements OnInit {
 
   allPendingTodos(todos: Todo[]) {
     return todos.filter(todo => !todo.completed).length;
+  }
+
+  clearCompletedTodos() {
+    const action = new ClearCompletedTodoAction();
+    this.store.dispatch(action);
   }
 }

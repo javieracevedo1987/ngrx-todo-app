@@ -4,7 +4,8 @@ import {
   TOGGLE_TODO,
   EDIT_TODO,
   REMOVE_TODO,
-  TOGGLE_ALL_TODO
+  TOGGLE_ALL_TODO,
+  CLEAR_COMPLETED_TODO
 } from "./todo.actions";
 import { Todo } from "./model/todo.model";
 
@@ -49,6 +50,8 @@ export function todoReducer(state = initialState, action: Actions): Todo[] {
       });
     case REMOVE_TODO:
       return state.filter(todo => todo.id != action.id);
+    case CLEAR_COMPLETED_TODO:
+      return state.filter(todo => !todo.completed);
     default:
       return state;
   }
