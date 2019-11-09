@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 // NgRx
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { todoReducer } from "./todo/todo.reducer";
+import { appReducers } from "./app.reducers";
 
 import { AppComponent } from "./app.component";
 import { FooterComponent } from "./footer/footer.component";
@@ -15,6 +15,7 @@ import { TodoAddComponent } from "./todo/todo-add/todo-add.component";
 import { TodoItemComponent } from "./todo/todo-item/todo-item.component";
 import { TodoListComponent } from "./todo/todo-list/todo-list.component";
 import { environment } from "src/environments/environment";
+import { FilterPipe } from './filter/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import { environment } from "src/environments/environment";
     TodoFooterComponent,
     TodoAddComponent,
     TodoItemComponent,
-    TodoListComponent
+    TodoListComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({ todos: todoReducer }),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
